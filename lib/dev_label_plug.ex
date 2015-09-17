@@ -4,10 +4,13 @@ defmodule DevLabelPlug do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    conn
-    |> Plug.Conn.register_before_send(fn conn_x ->
-      %{conn_x | resp_body: insert_label(conn_x.resp_body)}
-    end)
+    case Mix.env do
+      :prod -> conn
+      _ -> conn
+           |> Plug.Conn.register_before_send(fn conn_x ->
+             %{conn_x | resp_body: insert_label(conn_x.resp_body)}
+           end)
+    end
   end
 
   defp insert_label(body) when is_binary(body) do
