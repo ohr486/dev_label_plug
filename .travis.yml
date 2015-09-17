@@ -1,0 +1,7 @@
+language: elixir
+elixir: 1.0.5
+notifications:
+  recipients:
+    - ohr486@gmail.com
+before_script:
+  - mix deps.get --only test
