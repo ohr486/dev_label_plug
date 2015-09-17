@@ -2,9 +2,11 @@
 
 > Elixir plug for adding an env label inspired by [rak-dev-mark](http://github.com/dtaniwaki/rack-dev-mark).
 
+[![Build Status](https://travis-ci.org/ohr486/dev_label_plug.svg?branch=develop)](https://travis-ci.org/ohr486/dev_label_plug)
+
 ## Usage
 
-add `{:dev_label_plug, "~> xxx"}` to `deps` of your `mix.exs`
+add `{:dev_label_plug, xxx}` to `deps` of your `mix.exs`
 
 ```elixir
 defp deps do
@@ -14,7 +16,7 @@ defp deps do
    {:phoenix_html, "~> 2.1"},
    {:phoenix_live_reload, "~> 1.0", only: :dev},
    {:cowboy, "~> 1.0"},
-   {:dev_label_plug, github: "ohr486/dev_label_plug"}] # Add it!
+   {:dev_label_plug, github: "ohr486/dev_label_plug", branch: "develop"}] # Add it! and FIX it!(use hex)
 end
 ```
 
