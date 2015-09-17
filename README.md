@@ -1,6 +1,6 @@
 # DevLabelPlug
 
-> Elixir plug for adding an env label inspired by [rak-dev-mark](http://github.com/dtaniwaki/rack-dev-mark).
+> Elixir plug for adding an env label inspired by [rack-dev-mark](http://github.com/dtaniwaki/rack-dev-mark).
 
 [![Build Status](https://travis-ci.org/ohr486/dev_label_plug.svg?branch=develop)](https://travis-ci.org/ohr486/dev_label_plug)
 
