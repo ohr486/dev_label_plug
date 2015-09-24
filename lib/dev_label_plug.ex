@@ -8,7 +8,12 @@ defmodule DevLabelPlug do
       :prod -> conn
       _ -> conn
            |> Plug.Conn.register_before_send(fn conn_x ->
-             %{conn_x | resp_body: insert_label(conn_x.resp_body)}
+             if take_content_type(conn_x.resp_headers) |> is_text_html? &&
+                conn_x.status |> is_not_redirect? do
+               %{conn_x | resp_body: insert_label(conn_x.resp_body)}
+             else
+               conn_x
+             end
            end)
     end
   end
@@ -37,4 +42,19 @@ defmodule DevLabelPlug do
   defp insert_label(body) do
     body
   end
+
+  defp take_content_type(headers) do
+    headers |> Enum.find(&(&1 |> elem(0) == "content-type"))
+  end
+
+  defp is_text_html?(nil), do: false
+  defp is_text_html?(header) do
+    Regex.match?(~r/text\/html/i, elem(header, 1))
+  end
+
+  defp is_not_redirect?(status_code) when is_integer(status_code) do
+    status_code < 300 || 400 <= status_code
+  end
+  defp is_not_redirect?(_), do: false
+
 end
